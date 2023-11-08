@@ -1,0 +1,49 @@
+#Apply Min-Max Normalization, Z-score Standardization and Robust scalar on the numerical data variables.
+
+#Original Data
+ggplot(crime, aes(x = MONTH, y = DAY)) + geom_point()
+
+#Original Data Plot
+p1 <-  ggplot(crime, aes(x = MONTH, y = DAY)) + geom_point(color = "red")+ labs(title = "Original Data")
+
+#Min-Max Normalization
+normalizeMM <- function(x) {
+  return ((x - min(x)) / (max(x) - min(x)))
+}
+
+MONTH_norm<-normalizeMM(crime$MONTH)
+DAY_norm<-normalizeMM(crime$DAY)
+
+ggplot(crime, aes(x = MONTH_norm, y = DAY_norm)) + geom_point()
+
+#Min-Max Normalization Data Plot
+p2 <- ggplot(crime, aes(x = MONTH_norm, y = DAY_norm)) + geom_point(color = "green") + labs(title = "Min-Max Normalization Data")
+
+#Z-Score Standardization
+MONTH_zscaled<-scale(crime$MONTH)
+DAY_zscaled<-scale(crime$DAY)
+
+ggplot(crime, aes(x = MONTH_zscaled, y = DAY_zscaled)) + geom_point()
+
+#Z-Score Standardization Data Plot
+p3 = ggplot(crime, aes(x = MONTH_zscaled, y = DAY_zscaled)) + geom_point(color = "blue") + labs(title = "Z-Score Standardization Data")
+
+#Robust Scaler
+install.packages("robustbase")
+# Install and load the required packages
+install.packages("gridExtra")
+
+library(ggplot2)
+library(robustbase)
+library(gridExtra)
+
+MONTH_robust <- (crime$MONTH - median(crime$MONTH)) / mad(crime$MONTH)
+DAY_robust <- (crime$DAY - median(crime$DAY)) / mad(crime$DAY)
+
+ggplot(crime, aes(x = MONTH_robust, y = DAY_robust)) + geom_point()
+
+#Robust Scaler Data Plot
+p4 <- ggplot(crime, aes(x = MONTH_robust, y = DAY_robust)) + geom_point(color = "yellow") + labs(title = "Robust Scaler Data")
+
+# Arrange both plots side by side
+grid.arrange(p1, p2, p3, p4, ncol = 4)
