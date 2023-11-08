@@ -1,0 +1,11 @@
+library(ggplot2)
+install.packages("gridExtra")
+library(gridExtra)
+
+#Reads the dataset from RStudio folder
+crime <- read.csv(file = "crime.csv", stringsAsFactors = FALSE)
+mydata <- crime
+View(mydata)
+
+#This shows us which variables are categorical, discrete or continuous
+glimpse(crime)
