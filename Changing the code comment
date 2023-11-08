@@ -1,0 +1,2 @@
+#This shows us the variables inside the dataset
+glimpse(crime)
