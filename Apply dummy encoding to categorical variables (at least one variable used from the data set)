@@ -1,0 +1,18 @@
+#Apply dummy encoding to categorical variables (at least one variable used from the data set)
+crime$OtherTheft <- ifelse(crime$TYPE == 'Other Theft', 1, 0)
+crime$Mischief <- ifelse(crime$TYPE == 'Mischief', 1, 0)
+head(crime)
+
+#Install the fastDummies Package
+install.packages('fastDummies')
+
+#Load the fastDummies Package:
+library('fastDummies')
+
+#Make Dummy Variables in R
+crime <- dummy_cols(crime, select_columns = 'TYPE')
+head(crime)
+
+#How to Create Dummy Variables for More than One Column
+crime <- dummy_cols(crime, select_columns = c('TYPE', 'NEIGHBOURHOOD'))
+head(crime)
