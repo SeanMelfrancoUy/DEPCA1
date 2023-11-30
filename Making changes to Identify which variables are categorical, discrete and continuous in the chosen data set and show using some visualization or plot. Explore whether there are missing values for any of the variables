@@ -1,0 +1,28 @@
+#Identify which variables are categorical, discrete and continuous in the chosen data set and show using some visualization or plot. Explore whether there are missing values for any of the variables
+
+#This shows us the variables inside the dataset And we can see which variables are categorical, discrete or continuous.
+glimpse(crime)
+
+#Creating visualization or plots of my variables.
+
+#Creating a stack bar charts comparing NEIGHBOURHOODS by TYPE.
+crime %>%
+  ggplot() +
+  geom_bar(mapping = aes(x = TYPE, fill = NEIGHBOURHOOD), color = "black") +
+  labs(title = "Stacked Bar Chart of NEIGHBOURHOODS By TYPE", x = "TYPE", y = "NEIGHBOURHOODS") +
+  coord_flip()
+
+#Creating a histogram for MONTH.
+crime %>%
+  ggplot() +
+  geom_histogram(mapping = aes(x = MONTH), bins = 30, fill =
+                   "yellow", color = "black") +
+  labs(title = "Histogram of MONTH", x = "MONTH",
+       "Frequency")
+
+#Creating a scatterplot to compare MINUTE and HOUR.
+crime %>%
+  ggplot() +
+  geom_point(mapping = aes(x = MINUTE, y = HOUR), color = "blue",
+             size = 2) +
+  labs(title = "Scatterplot of MINUTE vs HOUR", x = "MINUTE", y = "HOUR")
