@@ -1,0 +1,12 @@
+#Find unusual patterns by identifying variations and covariation between the features in the dataset and perform Exploratory Data Analysis (EDA) to justify outcomes with supporting questions and visualisations.
+
+#We can see the distribution of the continuous variable HOUR broken down by the categorical value TYPE using covariation.
+ggplot(data = crime, mapping = aes(x = HOUR)) +
+  geom_freqpoly(mapping = aes(color = TYPE), binwidth = 500)
+
+#We are using density instead of count in order to make fair comparison using covariation.
+ggplot(
+  data = crime,
+  mapping = aes(x = HOUR, y = ..density..)
+) +
+  geom_freqpoly(mapping = aes(color = TYPE), binwidth = 500)
