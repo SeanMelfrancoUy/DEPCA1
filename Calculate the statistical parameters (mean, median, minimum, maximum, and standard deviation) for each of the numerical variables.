@@ -1,0 +1,31 @@
+#Calculate the statistical parameters (mean, median, minimum, maximum, and standard deviation) for each of the numerical variables.
+
+#Z-score for the continuous variable MINUTE
+zscore.MINUTE <- (crime$MINUTE -
+                    mean(crime$MINUTE))/sd(crime$MINUTE)
+zscore.MINUTE
+
+#Calculate skewness for the continuous variable MINUTE
+MINUTE_skew <- (3*(mean(crime$MINUTE)-
+                     median(crime$MINUTE))) / sd(crime$MINUTE)
+zscore.MINUTE_skew <-
+  (3*(mean(zscore.MINUTE)-
+        median(zscore.MINUTE))) /
+  sd(zscore.MINUTE)
+MINUTE_skew;zscore.MINUTE_skew
+
+#Min-Max Normalization for the continuous variable HOUR
+mmnorm.HOUR <- (crime$HOUR-
+                  min(crime$HOUR))/(max(crime$HOUR)-
+                                      min(crime$HOUR))
+mmnorm.HOUR
+
+#Find the skewness for the continuous variable DAY
+Inday_skew <- (3*(mean(natlog_DAY)-
+                       median(natlog_DAY)))/
+  sd(natlog_DAY)
+Inday_skew
+
+#Inverse Square Root skewness for the continuous variable MONTH
+invsqMONTH_skew <- (3*(mean(invsqrt_MONTH)- median(invsqrt_MONTH)))/sd(invsqrt_MONTH)
+invsqMONTH_skew
