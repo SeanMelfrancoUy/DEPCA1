@@ -1,0 +1,11 @@
+#Apply PCA with your chosen number of components.
+crime.pca <- prcomp(crime[,c(1:7,10,11)], center = TRUE,scale. = TRUE)
+summary(crime.pca)
+
+library(devtools)
+install.packages("remotes")
+remotes::install_github(vqv/ggiplot)
+
+PCA <- princomp(na.omit(crime), scale = TRUE, center = TRUE, tol = 0)
+
+PCA
